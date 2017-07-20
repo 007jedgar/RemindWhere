@@ -8,11 +8,21 @@
 
 import Foundation
 import MapKit
+import RealmSwift
 
-struct Reminder {
+class Reminder: Object {
     
-    var title = String()
-    var description = String()
-    var location = CLLocation()
+    dynamic var title: String = ""
+    dynamic var detail: String = ""
+    dynamic var startDate: Data? = nil
+    dynamic var endDate: Data? = nil
+    dynamic var location: String = ""
     
+//    init(title: String, detail: String, startDate: Data, endDate: Data, location: String) {
+//        self.title = title
+//        self.detail = detail
+//        self.startDate = startDate
+//        self.endDate = endDate
+//        self.location = location
+//    }
 }

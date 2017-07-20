@@ -1,0 +1,23 @@
+PODS:
+  - DateTimePicker (1.1.2)
+  - Realm (2.8.3):
+    - Realm/Headers (= 2.8.3)
+  - Realm/Headers (2.8.3)
+  - RealmSwift (2.8.3):
+    - Realm (= 2.8.3)
+  - Whisper (5.0.0)
+
+DEPENDENCIES:
+  - DateTimePicker
+  - RealmSwift
+  - Whisper
+
+SPEC CHECKSUMS:
+  DateTimePicker: 518bffa5438ef83a7a687cc4d5e187e5c12012b8
+  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
+  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
+  Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
+
+PODFILE CHECKSUM: 427388335d6eb1c413aa89e7072d5b7ac5bfc3fc
+
+COCOAPODS: 1.2.0

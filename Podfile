@@ -6,6 +6,10 @@ project 'RemindWhere.xcodeproj'
 target 'RemindWhere' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+  pod 'RealmSwift'
+  pod 'Whisper'
+  pod 'DateTimePicker'
+
 
   # Pods for RemindWhere
 
