@@ -21,37 +21,36 @@ class ReminderTableViewController: UITableViewController {
         queryRealm()
         //addRemidnerButton()
         testReminders()
+        self.tableView.reloadData()
     }
     
     // MARK: - Realm test reminders
     
-    
-    
     func testReminders() {
-        
+
         let testRem = Reminder(value: [
             "title": "test1",
-            "detail": "test detail"
+            "detail": "test detail1"
             ])
         
         let testRem1 = Reminder(value: [
-            "title": "test1",
-            "detail": "test detail"
+            "title": "test2",
+            "detail": "test detail2"
             ])
         
         let testRem2 = Reminder(value: [
-            "title": "test1",
-            "detail": "test detail"
+            "title": "test3",
+            "detail": "test detail3"
             ])
         
         let realm = try! Realm()
+
         try! realm.write {
-//            realm.add(testRem)
-//            realm.add(testRem1)
-//            realm.add(testRem2)
+            realm.add(testRem)
+            realm.add(testRem1)
+            realm.add(testRem2)
         }
     }
-    
     
     // MARK: - Add Reminder Button (back burner for now)
     
@@ -70,15 +69,15 @@ class ReminderTableViewController: UITableViewController {
     // MARK: - Segues and stuff
     
     func adddRemider() {
-        //let vc = AddReminderViewController()
         let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "AddReminderViewController") as! AddReminderViewController
-        self.present(vc1, animated: true, completion: nil)
+        let topVC: UINavigationController = UINavigationController(rootViewController: vc1)
+        self.present(topVC, animated: true, completion: nil)
     }
     
     // MARK: - Realm data query
     
     func queryRealm() {
-        
+        self.reminders.removeAll()
         let realm = try! Realm()
         let resultsByStartDate = realm.objects(Reminder.self)
         for result in resultsByStartDate {

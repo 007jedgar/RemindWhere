@@ -1,5 +1,15 @@
 PODS:
   - DateTimePicker (1.1.2)
+  - GoogleMaps (2.3.1):
+    - GoogleMaps/Maps (= 2.3.1)
+  - GoogleMaps/Base (2.3.1)
+  - GoogleMaps/Maps (2.3.1):
+    - GoogleMaps/Base
+  - GooglePlacePicker (2.3.1):
+    - GoogleMaps (= 2.3.1)
+    - GooglePlaces (= 2.3.1)
+  - GooglePlaces (2.3.1):
+    - GoogleMaps/Base (= 2.3.1)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
   - Realm/Headers (2.8.3)
@@ -9,15 +19,21 @@ PODS:
 
 DEPENDENCIES:
   - DateTimePicker
+  - GoogleMaps
+  - GooglePlacePicker
+  - GooglePlaces
   - RealmSwift
   - Whisper
 
 SPEC CHECKSUMS:
   DateTimePicker: 518bffa5438ef83a7a687cc4d5e187e5c12012b8
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
+  GooglePlacePicker: fc3564ac7a2ce314e78e42bfc1e16822ad1e5488
+  GooglePlaces: 4a7b22debfa1af65017b82943431822607e45201
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: 427388335d6eb1c413aa89e7072d5b7ac5bfc3fc
+PODFILE CHECKSUM: fe1a0eaef3eab01f86eab17fa316ec50b509ce08
 
 COCOAPODS: 1.2.0

@@ -9,7 +9,10 @@ target 'RemindWhere' do
   pod 'RealmSwift'
   pod 'Whisper'
   pod 'DateTimePicker'
-
+  
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 
   # Pods for RemindWhere
 
