@@ -231,15 +231,22 @@
                     <navigationItem key="navigationItem" id="zgj-Gg-F94">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Hb0-cX-eC5">
                             <color key="tintColor" red="1" green="0.32744098347568051" blue="0.25872680487061872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cancelReminder:" destination="tnv-Fj-hQ7" id="cSX-Wc-EsA"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="RS4-fb-5Ci">
                             <color key="tintColor" red="0.38353607229999997" green="0.42031390959999998" blue="0.60913705579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="saveReminder:" destination="tnv-Fj-hQ7" id="yzS-u3-jli"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="descriptionTextField" destination="nwP-sT-jrT" id="t2h-5h-s6i"/>
                         <outlet property="endDateBtn" destination="yum-ot-hmK" id="3Yo-Zg-E2w"/>
+                        <outlet property="locationSearchBar" destination="pOA-zz-fbM" id="7SZ-fN-axF"/>
                         <outlet property="startDateBtn" destination="vED-Gv-9SY" id="seB-oa-eQh"/>
                         <outlet property="titleTextField" destination="HEc-Hd-T7e" id="85c-6g-H35"/>
                     </connections>
@@ -253,7 +260,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R6x-e2-MqT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rfI-w6-R88">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rfI-w6-R88">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -269,10 +276,10 @@
         <!--Item-->
         <scene sceneID="X99-dY-FED">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e8n-nC-dmC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addReminderNav" automaticallyAdjustsScrollViewInsets="NO" id="e8n-nC-dmC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="kft-n2-ysb"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j2U-0Y-mnJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j2U-0Y-mnJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

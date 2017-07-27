@@ -23,17 +23,26 @@ class AddReminderViewController: UITableViewController, GMSPlacePickerViewContro
 
     @IBOutlet weak var locationSearchBar: UISearchBar!
     
+    var locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
+    var mapView: GMSMapView!
+    var placesClient: GMSPlacesClient!
+    var zoomLevel: Float = 15.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManagerInit()
     }
     
-    @IBAction func editStartDate(_ sender: Any) {
-        datePickerSettings()
+    @IBAction func cancelReminder(_ sender: Any) {
+        
     }
     
-    @IBAction func editEndDate(_ sender: Any) {
-        datePickerSettings()
+    @IBAction func saveReminder(_ sender: Any) {
+        
     }
+    
     
     // MARK: - Creating/Saving new realm objects
     
@@ -54,6 +63,16 @@ class AddReminderViewController: UITableViewController, GMSPlacePickerViewContro
         }
     }
     
+    // MARK: - Places Picker code
+    
+    @IBAction func editStartDate(_ sender: Any) {
+        datePickerSettings()
+    }
+    
+    @IBAction func editEndDate(_ sender: Any) {
+        datePickerSettings()
+    }
+    
     func datePickerSettings() {
         let min = Date()
         let max = Date().addingTimeInterval(60 * 60 * 24 * 14)
@@ -71,10 +90,9 @@ class AddReminderViewController: UITableViewController, GMSPlacePickerViewContro
         }
     }
     
-    // MARK: - Places Picker code
+    // MARK: - Place picker and location stuff
     
     @IBAction func pickPlace(_ sender: UIButton) {
-        //let config = GMSPlacePickerConfig(viewport: nil)
         
         let center = CLLocationCoordinate2D(latitude: -33.865143, longitude: 151.2099)
         let northEast = CLLocationCoordinate2D(latitude: center.latitude + 0.001,
@@ -83,14 +101,14 @@ class AddReminderViewController: UITableViewController, GMSPlacePickerViewContro
                                                longitude: center.longitude - 0.001)
         let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
         
-        let config = GMSPlacePickerConfig(viewport: viewport)
+        let config = GMSPlacePickerConfig(viewport: nil)
         let placePicker = GMSPlacePickerViewController(config: config)
-
+        
         present(placePicker, animated: true, completion: nil)
     }
     
     func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
-        // Dismiss the place picker, as it cannot dismiss itself.
+        
         viewController.dismiss(animated: true, completion: nil)
         
         print("Place name \(place.name)")
@@ -99,13 +117,20 @@ class AddReminderViewController: UITableViewController, GMSPlacePickerViewContro
     }
     
     func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
-        // Dismiss the place picker, as it cannot dismiss itself.
         viewController.dismiss(animated: true, completion: nil)
-        
-        print("No place selected")
+        print("something happened")
     }
     
-    
+    func locationManagerInit() {
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self as? CLLocationManagerDelegate
+        
+        placesClient = GMSPlacesClient.shared()
+    }
 }
 
 

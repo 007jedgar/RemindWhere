@@ -18,11 +18,11 @@ class Reminder: Object {
     dynamic var endDate: Data? = nil
     dynamic var location: String = ""
     
-//    init(title: String, detail: String, startDate: Data, endDate: Data, location: String) {
-//        self.title = title
-//        self.detail = detail
-//        self.startDate = startDate
-//        self.endDate = endDate
-//        self.location = location
-//    }
+}
+
+class Place: Object {
+    
+    dynamic var name: String = ""
+    dynamic var address: String = ""
+    
 }

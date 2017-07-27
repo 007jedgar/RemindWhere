@@ -12,59 +12,70 @@ import RealmSwift
 class ReminderTableViewController: UITableViewController {
 
     var reminders = [Reminder]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(adddRemider))
+        
+        deleteReminders()
+        addReminder()
         queryRealm()
-        //addRemidnerButton()
-        testReminders()
         self.tableView.reloadData()
     }
     
-    // MARK: - Realm test reminders
-    
-    func testReminders() {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
-        let testRem = Reminder(value: [
-            "title": "test1",
-            "detail": "test detail1"
-            ])
-        
-        let testRem1 = Reminder(value: [
-            "title": "test2",
-            "detail": "test detail2"
-            ])
-        
-        let testRem2 = Reminder(value: [
-            "title": "test3",
-            "detail": "test detail3"
-            ])
-        
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let realm = try! Realm()
-
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let reminder = reminders[indexPath.row]
+                try! realm.write {
+                    realm.delete(reminder)
+                }
+                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }
+    }
+    
+    // MARK: - Test reminders
+    
+    func deleteReminders() {
+        let realm = try! Realm()
+        
         try! realm.write {
-            realm.add(testRem)
-            realm.add(testRem1)
-            realm.add(testRem2)
+            realm.delete(reminders)
+            realm.deleteAll()
+        }
+    }
+    
+    func addReminder() {
+        let realm = try! Realm()
+        
+        let reminder = Reminder()
+        reminder.detail = "testDetail1"
+        reminder.title = "testTitle1"
+        
+        try! realm.write {
+            realm.add(reminder)
         }
     }
     
     // MARK: - Add Reminder Button (back burner for now)
     
-//    func addRemidnerButton() {
-//        let button = UIButton(type: .custom)
-//        button.frame = CGRect(x: 100, y: 100, width: 50, height: 50)
-//        button.layer.cornerRadius = button.frame.size.width / 5
-//        button.clipsToBounds = true
-//        button.titleLabel?.text = "+"
-//        button.backgroundColor = UIColor(red: 132/255.0, green: 123/255.0, blue: 123/255.0, alpha: 1)
-//        button.titleLabel?.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1)
-//        button.addTarget(self, action: #selector(adddRemider), for: .touchUpInside)
-//        self.view.addSubview(button)
-//    }
+    func addRemidnerButton() { // Not implemented for testing
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 100, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = button.frame.size.width / 7
+        button.clipsToBounds = true
+        button.titleLabel?.text = "+"
+        button.backgroundColor = UIColor(red: 232/255.0, green: 123/255.0, blue: 123/255.0, alpha: 1)
+        button.titleLabel?.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1)
+        button.addTarget(self, action: #selector(adddRemider), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
     
     // MARK: - Segues and stuff
     
